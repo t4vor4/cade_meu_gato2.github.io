@@ -1,0 +1,11 @@
+const desc = {
+    sala: 'Aparentemente houve uma batalha campal aqui. Pessoas caídas gemem entre pesadelos e dores nas costas e esse cenário só é cortado pelo grupo de amigos que varou a noite tentando zerar um jogo obscuro para um vídeo-game já fora de linha.',
+    cozinha: 'Sua cozinha está uma bagunça, com uma pilha de louça suja e, no fundo da pia, uma substância gelatinosa que pode ou não estar tentando entrar em contato com seu planeta natal. Alguns amigos parecem estar perdidos aqui.',
+    banheiro: 'Seu banheiro parecia ter sido inspirado no que havia de mais chique nas revistas de design. Agora ele parece o que há de mais chique nas revistas de descarte de resíduos tóxicos. Tem algumas almas perdidas ali disputando o que um dia foi um lindo vaso sanitário',
+    quarto: 'Seu quarto sempre foi o lugar mais quente e aconchegante desta casa e, aparentemente, um grupo de amigos também concorda com você. Só não concordam se o melhor lugar para a soneca é o guarda-roupa ou o criado-mudo.',
+    lavanderia: 'Sua lavanderia é um lugar especial, onde você passa um tempo precioso lavando suas roupas ao longo da semana, sob o olhar malemolente do seu gato. Ao lembrar da festa, você pensa no tempo extra que vai ter que passar ali.',
+    varanda: 'Um vento fresco sopra por aqui. Normalmente este é o lugar preferido do seu gato, onde ele observa o movimento das ruas.',
+    inicio: 'Você acorda na sua casa depois de uma festa de arromba. Vários amigos ainda estão por aí, mas tudo o que você quer é achar o seu gato de estimação, mas aparentemente ele sumiu. Você encontra alguém cambaleante e faz a única pergunta de valor nesta manhã:',
+    fim: 'Depois de tanto procurar, você encontra seu gato. Ele está lambemdo calmamente a própria virilha. Ele olha pra você e lança um simpático ronronar pedindo colo.<br />Você afugenta todos de seu apartamento e passa o resto da tarde vendo filmes e brincando com o felino.<br/><strong>Fim :)</strong>',
+    fail: 'As pessoas começam a sair da sua casa e você não acha seu gato. Depois de um dia muito angustiante você ouve um rosnar agudo vindo do seu quarto. Lá dentro, o gato te espera sobre um colchão todo coberto de xixi. Ele realmente não gosta de festas e, depois de algum tempo limpando a bagunça, você abre um sachê de comida de gato sabor peixe como uma forma de negociar a paz. Fim.',
+}

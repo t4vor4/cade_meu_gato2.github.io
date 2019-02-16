@@ -1,0 +1,134 @@
+* {
+    image-rendering: pixelated;
+}
+
+
+.content {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.splash {
+    display: block;
+    margin: 100px auto 0;
+    position: relative;
+    width: 70%;
+}
+
+.splash--1 img {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.splash--2 {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: auto;
+    color: #000;
+}
+
+.splash--2 h1 {
+    display: block;
+    width: 300px;
+    margin: auto;
+}
+
+.splash--2 .gato_logo {
+    float: right;
+    position: absolute;
+    width: 96px;
+    height: auto;
+    right: 40px;
+    top: 70px;
+}
+
+.splash--2 strong {
+    position: relative;
+    display: block;
+    width: 300px;
+    font-size: 2.1em;
+    line-height: 0.7em;
+    margin: 0 auto;
+    transform: rotateZ(-20deg);
+    text-shadow: 3px 4px 0 #6110a2;
+}
+
+.splash--2 small {
+    float: left;
+    position: relative;
+    width: 100%;
+    font-size: 0.5em;
+    line-height: 1em;
+    margin-top: 0.3em;
+}
+
+p {
+    font-size: 0.8em;
+}
+
+.containers--inicio {
+    float: left;
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    top: 100px;
+}
+
+button.nes-container {
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    border: none;
+}
+
+button.nes-container.is-dark {
+    background-color: #000;
+    color: #fff;
+}
+
+.nes-btn {
+    width: 100%;
+    font-size: 0.8em;
+}
+
+.nes-btn strong {
+    font-size: 1.1em;
+}
+
+.foto_char {
+    float: none;
+    position: relative;
+    width: 40vw;
+    height: 40vw;
+    max-width: 200px;
+    max-height: 200px;
+    background: red;
+    display: block;
+    margin: 0 auto 10px;
+    background-image: url('/src/img/Hero_01_Faceset.png');
+    background-size: 420%;
+    background-position: 67% 33%;
+}
+
+
+
+@media (max-width: 499px) {
+    p {
+        font-size: 0.7em;
+    }
+
+    .nes-btn {
+        font-size: 0.5em;
+    }
+
+    .nes-balloon {
+        font-size: 0.6em;
+    }
+}
