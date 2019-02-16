@@ -21,9 +21,12 @@ $(document).ready(function () {
     body = $('body')
     controle.locais_prontos = prepara_jogo()
     controle.dificuldade = {quantidade: controle.locais_prontos.length - 2, nivel: 'dificil' }
+    inicio_do_jogo()
     seleciona_opcoes()
-    esta_sala_aqui(0)
+    //esta_sala_aqui(0)
 });
+
+
 
 
 
@@ -143,7 +146,7 @@ const mostra_a_dica = (i,npc_id) => {
             `<h2 class="title">Em ${npc_atual.nome}</h2>`+
             '<div class="containers">'+
             `<p class="nes-balloon from-left">${npc_atual.frase+dica_atual}</p>`+
-            `<div class="foto_char npc-${npc_atual.id}"></div>`+
+            `<div class="foto_char npc-${npc_atual.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
             '<div class="containers">'+
             '<button class="nes-btn perguntar_alguem">Perguntar para mais alguém</button>'+
             `<button class="nes-btn locais_casa" data-sala="${this.sala.id}">Procurar em algum cômodo</button>`+
@@ -283,10 +286,8 @@ const fim_do_jogo_perda = _ => {
 
 //Adiciona ocupantes
 const prepara_jogo = () => {
-// function prepara_jogo() {
     let mix_locais = shuffle_arr(estes_locais)
     for (i in mix_locais) {
-        // mix_locais[i].dicas = shuffle_arr(mistura_dicas(mix_locais[i].dicas))
         mix_locais[i].dicas = shuffle_arr(mix_locais[i].dicas)
         mix_locais[i].ocupantes = add_amigos()
     }
