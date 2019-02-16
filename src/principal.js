@@ -140,7 +140,7 @@ const mostra_a_dica = (i,npc_id) => {
             break;
     }
     
-    console.log(npc_atual)
+    // console.log(npc_atual)
     $html = barra_de_progresso(controle.timer)+
             `<section class="nes-container with-title" data-sala="${this.sala.id}">`+
             `<h2 class="title">Em ${npc_atual.nome}</h2>`+
