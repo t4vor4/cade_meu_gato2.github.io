@@ -118,7 +118,7 @@ const lista_pessoas_no_local = (i) => {
 const mostra_a_dica = (i,npc_id) => {
     this.sala = controle.locais_prontos[i]
     let npc_atual, dica_atual
-    let dicas_erradas = shuffle_arr(dicas.erro)
+    let dicas_erradas = shuffle_arr(dicas2.erro)
     let proxima_sala = controle.locais_prontos[++i]
     // console.log('controle.erro = ',controle.erro)
     switch (controle.erro) {
