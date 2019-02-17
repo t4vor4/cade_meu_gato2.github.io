@@ -2,6 +2,7 @@ const estes_locais = [
     {
         id: 'sala',
         nome: 'Sala de Estar',
+        artigo: ['a','na'],
         descricao: desc.sala,
         ocupantes: [],
         dicas: dicas2.sala
@@ -9,6 +10,7 @@ const estes_locais = [
     {
         id: 'cozinha',
         nome: 'Cozinha',
+        artigo: ['a','na'],
         descricao: desc.cozinha,
         ocupantes: [],
         dicas: dicas2.cozinha
@@ -16,6 +18,7 @@ const estes_locais = [
     {
         id: 'banheiro',
         nome: 'Banheiro',
+        artigo: ['o','no'],
         descricao: desc.banheiro,
         ocupantes: [],
         dicas: dicas2.banheiro
@@ -23,6 +26,7 @@ const estes_locais = [
     {
         id: 'quarto',
         nome: 'Quarto',
+        artigo: ['o','no'],
         descricao: desc.quarto,
         ocupantes: [],
         dicas: dicas2.quarto
@@ -30,6 +34,7 @@ const estes_locais = [
     {
         id: 'lavanderia',
         nome: 'Lavanderia',
+        artigo: ['a','na'],
         descricao: desc.lavanderia,
         ocupantes: [],
         dicas: dicas2.lavanderia
@@ -37,6 +42,7 @@ const estes_locais = [
     {
         id: 'varanda',
         nome: 'Varanda',
+        artigo: ['a','na'],
         descricao: desc.varanda,
         ocupantes: [],
         dicas: dicas2.varanda

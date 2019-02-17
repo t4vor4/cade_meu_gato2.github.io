@@ -1,105 +1,171 @@
-* {
+:root {
+    --main-bg-color: #ccc;
+    --main-color: #333;
+    --sec-bg-color: #777;
+    --sec-color: #fff;
+    --main-font: "Press Start 2P";
+    --success: green;
+    --warning: yellow;
+    --error: red;
+}
+  
+
+*, *::after, *::before {
     image-rendering: pixelated;
+    box-sizing: border-box;
+}
+
+/* Inicio Mess */
+.mess-container {
+    width: calc(100% - 20px);
+    margin: 10px;
+    border: 4px solid var(--main-bg-color);
+    box-shadow: inset 0 0 0px 4px var(--main-color);
+    background-color: var(--main-bg-color);
+}
+
+.mess-container .title {
+    background: var(--main-bg-color);
+    width: auto;
+    float: left;
+    position: relative;
+    top: -5px;
+    left: 0;
+    margin: 0 50% 0 0;
+    padding: 0 5px;
+}
+
+.mess-progress[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border: 2px solid var(--main-color);
+}
+
+.mess-progress[value]::-webkit-progress-bar {
+    background-color: var(--main-bg-color);
+}
+.mess-progress[value]::-webkit-progress-value {
+    background: var(--success);
+}
+.mess-progress.is-warning[value]::-webkit-progress-value {
+    background: var(--warning);
+}
+.mess-progress.is-error[value]::-webkit-progress-value {
+    background: var(--error);
+}
+
+.mess-balloon {
+    background: var(--main-bg-color);
+    padding: 10px;
+    border: 4px solid #333;
+    border-radius: 6px;
+    position: relative;
+}
+
+.mess-balloon::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 20px solid var(--main-color);
+    border-left: 20px solid transparent;
+    position: absolute;
+    float: left;
+    left: 40px;
+    bottom: -20px;
 }
 
 
+
+/* Fim Mess */
+body {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    color: var(--main-color);
+    font-family: var(--main-font);
+    background-color: var(--main-bg-color);
+}
 .content {
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
     height: 100%;
     margin: 0 auto;
     max-width: 500px;
+    border: 4px solid var(--main-bg-color);
+    box-shadow: inset 0 0 0px 4px var(--main-color);
+    background-color: var(--main-bg-color);
+    max-height: 800px;
 }
 
-.splash {
-    display: block;
-    margin: 100px auto 0;
-    position: relative;
-    width: 70%;
-}
-
-.splash--1 img {
-    float: left;
-    position: relative;
-    width: 100%;
-    height: auto;
-}
-
-.splash--2 {
-    float: left;
-    position: relative;
-    width: 100%;
-    height: auto;
-    color: #000;
-}
-
-.splash--2 h1 {
-    display: block;
-    width: 300px;
-    margin: auto;
-}
-
-.splash--2 .gato_logo {
-    float: right;
+header {
     position: absolute;
-    width: 96px;
-    height: auto;
-    right: 40px;
-    top: 70px;
+    padding: 0px 10px 10px;
 }
 
-.splash--2 strong {
-    position: relative;
+section {
+    position: absolute;
     display: block;
-    width: 300px;
-    font-size: 2.1em;
-    line-height: 0.7em;
-    margin: 0 auto;
-    transform: rotateZ(-20deg);
-    text-shadow: 3px 4px 0 #6110a2;
+    width: calc(100% - 20px);
+    /* height: calc(100% - 20px); */
+    margin: 10px;
+    float: left;
 }
 
-.splash--2 small {
-    float: left;
-    position: relative;
-    width: 100%;
-    font-size: 0.5em;
-    line-height: 1em;
-    margin-top: 0.3em;
+header+section {
+    margin-top: 60px;
+}
+
+h2 {
+    font-size: 1.4em;
+    line-height: 1.4;
+}
+
+h3 {
+    font-size: 1.2em;
 }
 
 p {
-    font-size: 0.8em;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 0 10px;
 }
 
-.containers--inicio {
-    float: left;
+button {
+    font-family: var(--main-font);
+    font-size: 0.85em;
+    width: calc(100% - 2px);
+    padding: 10px;
+    border: 4px solid var(--main-color);
+    box-shadow: -4px 4px 0 0px var(--main-color);
+    margin-left: 2px;
+    cursor: pointer;
+    min-height: 40px;
     position: relative;
-    width: 80%;
-    margin-left: 10%;
-    top: 100px;
 }
-
-button.nes-container {
-    background-color: #fff;
-    color: #000;
+button::after {
+    content: "";
+    background: transparent;
     width: 100%;
-    border: none;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: inset -3px -3px 0 rgba(0,0,0,0.2);
 }
 
-button.nes-container.is-dark {
-    background-color: #000;
-    color: #fff;
+button+button {
+    margin-top: 10px;
 }
 
-.nes-btn {
-    width: 100%;
-    font-size: 0.8em;
-}
-
-.nes-btn strong {
-    font-size: 1.1em;
+button.voltar {
+    background-color: var(--sec-bg-color);
+    color: var(--sec-color)
 }
 
 .foto_char {
@@ -112,23 +178,30 @@ button.nes-container.is-dark {
     background: red;
     display: block;
     margin: 0 auto 10px;
-    background-image: url('/src/img/Hero_01_Faceset.png');
+    background-image: url('../src/img/Hero_01_Faceset.png');
     background-size: 420%;
     background-position: 67% 33%;
 }
 
+.foto_local {
+    float: none;
+    position: relative;
+    width: 85vw;
+    height: 60vw;
+    max-width: 460px;
+    max-height: 322px;
+    background: var(--sec-bg-color);
+    display: block;
+    margin: 10px auto;
+    /* background-image: url('/src/img/Hero_01_Faceset.png');
+    background-size: 420%;
+    background-position: 67% 33%; */
+}
 
-
-@media (max-width: 499px) {
-    p {
-        font-size: 0.7em;
-    }
-
-    .nes-btn {
-        font-size: 0.5em;
-    }
-
-    .nes-balloon {
-        font-size: 0.6em;
+@media (min-width: 501px) {
+    .content {
+        position: fixed;
+        margin-left: 50%;
+        left: -250px;
     }
 }

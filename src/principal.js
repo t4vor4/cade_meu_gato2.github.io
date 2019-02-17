@@ -87,12 +87,12 @@ const fim_do_jogo = (i) => {
     this.sala = controle.locais_prontos[i]
     // content.innerHTML = barra_de_progresso(controle.timer)+
     let $html = barra_de_progresso(controle.timer)+
-        '<section class="nes-container with-title">'+
-        `<h2 class="title">Você encontrou seu gato em ${this.sala.nome}</h2>`+
+        '<section class="with-title">'+
+        `<h2 class="title">Você encontrou seu gato ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
         `<p>${desc.fim}</p>`+
         '<div class="containers">'+
-        // '<button class="nes-btn perguntar_alguem">Perguntar para alguém</button>'+
-        // '<button class="nes-btn locais_casa">Procurar em algum cômodo</button>'+
+        // '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
+        // '<button class="mess-btn locais_casa">Procurar em algum cômodo</button>'+
         '</div>'+
         '</section>'
     $('.content').html($html)
@@ -103,13 +103,13 @@ const lista_pessoas_no_local = (i) => {
     let amigos = controle.locais_prontos[i++].ocupantes
     // content.innerHTML = barra_de_progresso(controle.timer)+
     let $html = barra_de_progresso(controle.timer)+
-            `<section class="nes-container with-title is-dark" data-sala="${this.sala.id}">`+
-            `<h2 class="title">Em ${this.sala.nome} você encontra alguns amigos</h2>`+
+            `<section class="with-title is-dark" data-sala="${this.sala.id}">`+
+            `<h2 class="title">Você encontra alguns amigos ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
             '<div class="containers">'+
-            `<button class="nes-btn perg_pers perg_pers_1" data-amigo="${amigos[0].id}">Perguntar para <strong>${amigos[0].nome}</strong></button>`+
-            `<button class="nes-btn perg_pers perg_pers_2" data-amigo="${amigos[1].id}">Perguntar para <strong>${amigos[1].nome}</strong></button>`+
-            `<button class="nes-btn perg_pers perg_pers_3" data-amigo="${amigos[2].id}">Perguntar para <strong>${amigos[2].nome}</strong></button>`+
-            `<button class="nes-btn is-warning voltar" data-valor="${this.sala.id}">Voltar</button>`+
+            `<button class="mess-btn perg_pers perg_pers_1" data-amigo="${amigos[0].id}">Perguntar para <strong>${amigos[0].nome}</strong></button>`+
+            `<button class="mess-btn perg_pers perg_pers_2" data-amigo="${amigos[1].id}">Perguntar para <strong>${amigos[1].nome}</strong></button>`+
+            `<button class="mess-btn perg_pers perg_pers_3" data-amigo="${amigos[2].id}">Perguntar para <strong>${amigos[2].nome}</strong></button>`+
+            `<button class="mess-btn is-warning voltar" data-valor="${this.sala.id}">Voltar</button>`+
             '</div>'+
             '</section>'
     $('.content').html($html)
@@ -142,14 +142,14 @@ const mostra_a_dica = (i,npc_id) => {
     
     // console.log(npc_atual)
     $html = barra_de_progresso(controle.timer)+
-            `<section class="nes-container with-title" data-sala="${this.sala.id}">`+
-            `<h2 class="title">Em ${npc_atual.nome}</h2>`+
+            `<section class="with-title" data-sala="${this.sala.id}">`+
+            `<h2 class="title">${npc_atual.nome}</h2>`+
             '<div class="containers">'+
-            `<p class="nes-balloon from-left">${npc_atual.frase+dica_atual}</p>`+
+            `<p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>`+
             `<div class="foto_char npc-${npc_atual.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
             '<div class="containers">'+
-            '<button class="nes-btn perguntar_alguem">Perguntar para mais alguém</button>'+
-            `<button class="nes-btn locais_casa" data-sala="${this.sala.id}">Procurar em algum cômodo</button>`+
+            '<button class="mess-btn perguntar_alguem">Perguntar para mais alguém</button>'+
+            `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>`+
             '</div>'+
             '</div>'+
             '</section>'
@@ -178,7 +178,7 @@ const caminho_correto = _ => {
 
 const na_pista_certa = _ => {
     // alert('pista certa')
-    $html = '<section class="nes-container is-succeess with-title">'+
+    $html = '<section class="is-succeess with-title">'+
         '<h2 class="title">Opa!</h2>'+
         '<div class="containers">'+
         `<p>Parece que o bichano esteve neste cômodo, esta cheio de pêlos!</p>`+
@@ -192,7 +192,7 @@ const caminho_errado = (local) => {
     switch (true) {
         case local === controle.locais_prontos[controle.ponto].id:
             controle.erro = 0
-            console.log(`Voltando ao caminho ${local}`)
+            //console.log(`Voltando ao caminho ${local}`)
             controle.pivot = controle.ponto
             esta_sala_aqui(controle.ponto)
             break;
@@ -223,15 +223,15 @@ const mostraOpcoesDeLocais = (i,sala_atual) => {
     escolhas = shuffle_arr(escolhas)
     // console.log(escolhas)
     let conteudo = barra_de_progresso(controle.timer)+
-        '<section class="nes-container is-dark with-title">'+
+        '<section class="is-dark with-title">'+
         '<h2 class="title">Onde esse gato deve estar?</h2>'+
         '<div class="containers">'+
         '<p>Locais da casa</p>'+
         '<div class="containers">'+
-        `<button class="nes-btn is-dark local" data-local="${escolhas[0].id}">${escolhas[0].nome}</button>`+
-        `<button class="nes-btn is-dark local" data-local="${escolhas[1].id}">${escolhas[1].nome}</button>`+
-        `<button class="nes-btn is-dark local" data-local="${escolhas[2].id}">${escolhas[2].nome}</button>`+
-        `<button class="nes-btn is-warning voltar" data-valor=${sala_atual}>Voltar</button>`+
+        `<button class="mess-btn is-dark local" data-local="${escolhas[0].id}">${escolhas[0].nome}</button>`+
+        `<button class="mess-btn is-dark local" data-local="${escolhas[1].id}">${escolhas[1].nome}</button>`+
+        `<button class="mess-btn is-dark local" data-local="${escolhas[2].id}">${escolhas[2].nome}</button>`+
+        `<button class="mess-btn is-warning voltar" data-valor=${sala_atual}>Voltar</button>`+
         '</div>'+
         '</section>'
     $('.content').html(conteudo)
@@ -242,12 +242,13 @@ const esta_sala_aqui = (i) => {
     this.sala = controle.locais_prontos[i]
     // console.log(this.sala)
     let $html = barra_de_progresso(controle.timer)+
-        `<section class="nes-container with-title" data-sala="${this.sala.id}">`+
-        `<h2 class="title">Você está em ${this.sala.nome}</h2>`+
+        `<section class="with-title" data-sala="${this.sala.id}">`+
+        `<h2 class="title">Você está ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
+        `<div class="foto_local local-${this.sala.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
         `<p>${this.sala.descricao}</p>`+
         '<div class="containers">'+
-        '<button class="nes-btn perguntar_alguem">Perguntar para alguém</button>'+
-        `<button class="nes-btn locais_casa" data-sala="${this.sala.id}">Procurar em algum cômodo</button>`+
+        '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
+        `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>`+
         '</div>'+
         '</section>'
     $('.content').html($html)
@@ -259,9 +260,9 @@ const barra_de_progresso = (timer) => {
     valor_tempo = timer * mod
     valor_tempo > 80 ? classe = 'is-error' : valor_tempo > 50 ? classe = 'is-warning' : classe = 'is-success'  
     
-    let str = '<header class="nes-container with-title">'+
+    let str = '<header class="mess-container with-title">'+
     '<h3 class="title">Tempo</h3>'+
-    `<progress class="nes-progress ${classe} timer" timer" value="${valor_tempo}" max="100"></progress>`+
+    `<progress class="mess-progress ${classe} timer" timer" value="${valor_tempo}" max="100"></progress>`+
     '</header>'
 
     if (valor_tempo >= 100) {
@@ -273,8 +274,8 @@ const barra_de_progresso = (timer) => {
 }
 
 const fim_do_jogo_perda = _ => {
-    // content.innerHTML = '<section class="nes-container is-dark with-title">'+
-    let $html = '<section class="nes-container is-dark with-title">'+
+    // content.innerHTML = '<section class="mess-container is-dark with-title">'+
+    let $html = '<section class="is-dark with-title">'+
         '<h2 class="title">Oh não!</h2>'+
         '<div class="containers">'+
         `<p>${desc.fail}</p>`+
@@ -324,6 +325,6 @@ const shuffle_arr = (a) => {
 }
 
 const inicio_do_jogo = () => {
-    let $html = `<section class="nes-container"><p>${desc.inicio}</p><div class="containers"></div><button class="nes-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
+    let $html = `<section><p>${desc.inicio}</p><div class="containers"></div><button class="mess-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
     $('.content').html($html)
 }
