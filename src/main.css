@@ -1,6 +1,6 @@
 :root {
-    --main-bg-color: #ccc;
-    --main-color: #333;
+    --main-bg-color: #f2d3ab;
+    --main-color: #272744;
     --sec-bg-color: #777;
     --sec-color: #fff;
     --main-font: "Press Start 2P";
@@ -35,28 +35,33 @@
     padding: 0 5px;
 }
 
-.mess-progress[value] {
+/* .mess-progress[value] {
     -webkit-appearance: none;
     appearance: none;
     float: left;
     position: relative;
     width: 100%;
     height: 20px;
+    background-color: var(--main-bg-color);
     border: 2px solid var(--main-color);
 }
 
-.mess-progress[value]::-webkit-progress-bar {
+.mess-progress[value]::-webkit-progress-bar,
+.mess-progress[value]::-moz-progress-bar {
     background-color: var(--main-bg-color);
 }
-.mess-progress[value]::-webkit-progress-value {
+.mess-progress[value]::-webkit-progress-value,
+.mess-progress[value]::-moz-progress-value {
     background: var(--success);
 }
-.mess-progress.is-warning[value]::-webkit-progress-value {
+.mess-progress.is-warning[value]::-webkit-progress-value,
+.mess-progress.is-warning[value]::-moz-progress-value {
     background: var(--warning);
 }
-.mess-progress.is-error[value]::-webkit-progress-value {
+.mess-progress.is-error[value]::-webkit-progress-value,
+.mess-progress.is-error[value]::-moz-progress-value {
     background: var(--error);
-}
+} */
 
 .mess-balloon {
     background: var(--main-bg-color);
@@ -142,6 +147,7 @@ button {
     padding: 10px;
     border: 4px solid var(--main-color);
     box-shadow: -4px 4px 0 0px var(--main-color);
+    background-color: var(--main-bg-color);
     margin-left: 2px;
     cursor: pointer;
     min-height: 40px;
@@ -186,16 +192,39 @@ button.voltar {
 .foto_local {
     float: none;
     position: relative;
-    width: 85vw;
+    width: 60vw;
     height: 60vw;
-    max-width: 460px;
+    max-width: 322px;
     max-height: 322px;
     background: var(--sec-bg-color);
     display: block;
     margin: 10px auto;
-    /* background-image: url('/src/img/Hero_01_Faceset.png');
-    background-size: 420%;
-    background-position: 67% 33%; */
+    background-image: url('../src/img/sala.png');
+    background-size: 100%;
+    background-position: bottom center;
+}
+
+.progress {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border: 4px solid var(--main-color);
+}
+
+.progress_bar {
+    float: left;
+    position: absolute;
+    height: 100%;
+    background-color: var(--success);
+}
+
+.progress_bar.is-warning {
+    background-color: var(--warning);
+}
+
+.progress_bar.is-error {
+    background-color: var(--error);
 }
 
 @media (min-width: 501px) {

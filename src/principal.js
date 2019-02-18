@@ -262,7 +262,10 @@ const barra_de_progresso = (timer) => {
     
     let str = '<header class="mess-container with-title">'+
     '<h3 class="title">Tempo</h3>'+
-    `<progress class="mess-progress ${classe} timer" timer" value="${valor_tempo}" max="100"></progress>`+
+    '<span class="progress">'+
+    `<span class="progress_bar ${classe}" style="width: ${valor_tempo}%"></span>`+
+    '</span>'+
+    // `<progress class="mess-progress ${classe} timer" value="${valor_tempo}" max="100"></progress>`+
     '</header>'
 
     if (valor_tempo >= 100) {
