@@ -12,6 +12,7 @@
 
 *, *::after, *::before {
     image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
     box-sizing: border-box;
 }
 
