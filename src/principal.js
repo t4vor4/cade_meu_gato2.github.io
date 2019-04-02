@@ -295,6 +295,7 @@ const prepara_jogo = () => {
         mix_locais[i].dicas = shuffle_arr(mix_locais[i].dicas)
         mix_locais[i].ocupantes = add_amigos()
     }
+    console.log(mix_locais)
     return mix_locais
 }
 
