@@ -1,7 +1,6 @@
 /*
 * TO-DO
-* Colocar o botão 'balançar o potinho'
-* Adicionar imagens
+* modo visual-novel
 */
 
 
@@ -20,7 +19,8 @@ let content;
 $(document).ready(function () {
     body = $('body')
     controle.locais_prontos = prepara_jogo()
-    controle.dificuldade = {quantidade: controle.locais_prontos.length - 2, nivel: 'dificil' }
+    console.log(controle.locais_prontos)
+    controle.dificuldade = {quantidade: 5, nivel: 'facil' }
     inicio_do_jogo()
     seleciona_opcoes()
     //esta_sala_aqui(0)
@@ -34,7 +34,7 @@ $(document).ready(function () {
 // Funções
 // ===================================================================================
 const seleciona_opcoes = _ => {
-    $(document).on('click','body',function(e){
+    $(document).on('click','.mess-btn',function(e){
         let index, local, nomeClasse
         !controle.perda ? nomeClasse = e.target.className : nomeClasse = 'gameover'
         // console.log(nomeClasse)
@@ -160,7 +160,7 @@ const proximo_local = (local) => local == controle.locais_prontos[controle.pivot
 
 const retorna_index_da_sala = (sala) => {
     for (i in controle.locais_prontos) {
-        if (controle.locais_prontos[i].id == sala) return i
+        if (controle.locais_prontos[i].id === sala) return i
     }
 }
 
@@ -206,11 +206,13 @@ const caminho_errado = (local) => {
     }
 }
 
-const mostraOpcoesDeLocais = (i,sala_atual) => {
-    const diferente_do_index_atual = (elem,index) => index != i && index != (i+1)
+// Aqui tem um erro
+function mostraOpcoesDeLocais (i,sala_atual) {
+    const diferente_do_index_atual = (elem,index) => index !== i && index !== (i+1)
     let escolhas = controle.locais_prontos.filter(diferente_do_index_atual);
     escolhas = shuffle_arr(escolhas)
-    for (let y = 2; y > 0; y--) {escolhas.pop()}
+    for (let y = escolhas.length-2; y > 0; y--) {escolhas.pop()}
+    console.log(escolhas)
     if (controle.pivot == controle.ponto) {
         escolhas.push(controle.locais_prontos[i+1])
     } else {
@@ -226,7 +228,7 @@ const mostraOpcoesDeLocais = (i,sala_atual) => {
         '<section class="is-dark with-title">'+
         '<h2 class="title">Onde esse gato deve estar?</h2>'+
         '<div class="containers">'+
-        '<p>Locais da casa</p>'+
+        '<p>Locais</p>'+
         '<div class="containers">'+
         `<button class="mess-btn is-dark local" data-local="${escolhas[0].id}">${escolhas[0].nome}</button>`+
         `<button class="mess-btn is-dark local" data-local="${escolhas[1].id}">${escolhas[1].nome}</button>`+
@@ -248,7 +250,7 @@ const esta_sala_aqui = (i) => {
         `<p>${this.sala.descricao}</p>`+
         '<div class="containers">'+
         '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
-        `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>`+
+        `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro lugar</button>`+
         '</div>'+
         '</section>'
     $('.content').html($html)
@@ -290,35 +292,36 @@ const fim_do_jogo_perda = _ => {
 
 //Adiciona ocupantes
 const prepara_jogo = () => {
-    let mix_locais = shuffle_arr(estes_locais)
+    // let mix_locais = shuffle_arr(estes_locais)
+    let mix_locais = estes_locais
     for (i in mix_locais) {
-        mix_locais[i].dicas = shuffle_arr(mix_locais[i].dicas)
-        mix_locais[i].ocupantes = add_amigos()
+        //  mix_locais[i].dicas = shuffle_arr(mix_locais[i].dicas)
+        // mix_locais[i].ocupantes = add_amigos()
     }
-    console.log(mix_locais)
+    // console.log(mix_locais)
     return mix_locais
 }
 
-const mistura_dicas = (arr) => {
-// function mistura_dicas(arr) {
-    let x = []
-    for (let i = 0; i < arr.length; i++) {
-        for (let y = 0; y <  arr[i].length; y++) {
-            let z = arr[i][y]
-            x[i] = shuffle_arr(z)
-        }
-    }
-    return x
-}
+// const mistura_dicas = (arr) => {
+// // function mistura_dicas(arr) {
+//     let x = []
+//     for (let i = 0; i < arr.length; i++) {
+//         for (let y = 0; y <  arr[i].length; y++) {
+//             let z = arr[i][y]
+//             x[i] = shuffle_arr(z)
+//         }
+//     }
+//     return x
+// }
 
-const add_amigos = _ => {
-    let x = shuffle_arr(lista_de_amigos)
-    let y = []
-    for (let i = 0; i < 3; i++) {
-        y.push(x[i])
-    }
-    return y
-}
+// const add_amigos = _ => {
+//     let x = shuffle_arr(lista_de_amigos)
+//     let y = []
+//     for (let i = 0; i < 3; i++) {
+//         y.push(x[i])
+//     }
+//     return y
+// }
 
 const shuffle_arr = (a) => {
     for (let i = a.length - 1; i > 0; i--) {
