@@ -103,7 +103,7 @@ const lista_pessoas_no_local = (i) => {
     let amigos = controle.locais_prontos[i++].ocupantes
     // content.innerHTML = barra_de_progresso(controle.timer)+
     let $html = barra_de_progresso(controle.timer)+
-            `<section class="with-title is-dark" data-sala="${this.sala.id}">`+
+            `<section class="with-title is-dark bg_on" data-sala="${this.sala.id}">`+
             `<h2 class="title">Você encontra alguns amigos ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
             '<div class="containers">'+
             `<button class="mess-btn perg_pers perg_pers_1" data-amigo="${amigos[0].id}">Perguntar para <strong>${amigos[0].nome}</strong></button>`+
@@ -142,7 +142,7 @@ const mostra_a_dica = (i,npc_id) => {
     
     // console.log(npc_atual)
     $html = barra_de_progresso(controle.timer)+
-            `<section class="with-title" data-sala="${this.sala.id}">`+
+            `<section class="with-title bg_on" data-sala="${this.sala.id}">`+
             `<h2 class="title">${npc_atual.nome}</h2>`+
             '<div class="containers">'+
             `<p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>`+
@@ -225,7 +225,7 @@ function mostraOpcoesDeLocais (i,sala_atual) {
     escolhas = shuffle_arr(escolhas)
     // console.log(escolhas)
     let conteudo = barra_de_progresso(controle.timer)+
-        '<section class="is-dark with-title">'+
+        `<section class="is-dark with-title bg_on" data-sala="${this.sala.id}>`+
         '<h2 class="title">Onde esse gato deve estar?</h2>'+
         '<div class="containers">'+
         '<p>Locais</p>'+
@@ -244,7 +244,7 @@ const esta_sala_aqui = (i) => {
     this.sala = controle.locais_prontos[i]
     // console.log(this.sala)
     let $html = barra_de_progresso(controle.timer)+
-        `<section class="with-title" data-sala="${this.sala.id}">`+
+        `<section class="with-title bg_on" data-sala="${this.sala.id}">`+
         `<h2 class="title">Você está ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
         `<div class="foto_local local-${this.sala.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
         `<p>${this.sala.descricao}</p>`+
