@@ -40,6 +40,15 @@
     padding: 0 5px;
 }
 
+.mess-container .frame {
+    display: block;
+    width: 100%;
+    background: red;
+    max-width: 100%;
+    height: 57vw;
+
+}
+
 /* .mess-progress[value] {
     -webkit-appearance: none;
     appearance: none;

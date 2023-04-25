@@ -11,20 +11,41 @@ let controle = {
     pivot : 0,
     erro : 0,
     dificuldade: 0,
-    perda : 0
+    perda : 0,
+    descricoes: ''
+    
 }
 
 let content;
 
+
+
+
+
+
 $(document).ready(function () {
+    fetch('./src/json/general.json')
+        .then(response => response.json())
+        .then(data => {
+            controle.descricoes = data.descricoes;
+            controle.dicaErrada = data.dicaErrada;
+        })
+        .then( () => playGame())
+        .catch(error => console.error(error));
+});
+
+const playGame = function() {
     body = $('body')
     controle.locais_prontos = prepara_jogo()
     console.log(controle.locais_prontos)
     controle.dificuldade = {quantidade: 5, nivel: 'facil' }
+    $(document).on("click", _ => console.log(controle));
+    
+    
     inicio_do_jogo()
     seleciona_opcoes()
     //esta_sala_aqui(0)
-});
+}
 
 
 
@@ -89,7 +110,7 @@ const fim_do_jogo = (i) => {
     let $html = barra_de_progresso(controle.timer)+
         '<section class="with-title">'+
         `<h2 class="title">Você encontrou seu gato ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
-        `<p>${desc.fim}</p>`+
+        `<p>${controle.descricoes.fim}</p>`+
         '<div class="containers">'+
         // '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
         // '<button class="mess-btn locais_casa">Procurar em algum cômodo</button>'+
@@ -101,24 +122,31 @@ const fim_do_jogo = (i) => {
 const lista_pessoas_no_local = (i) => {
     this.sala = controle.locais_prontos[i]
     let amigos = controle.locais_prontos[i++].ocupantes
-    // content.innerHTML = barra_de_progresso(controle.timer)+
-    let $html = barra_de_progresso(controle.timer)+
-            `<section class="with-title is-dark bg_on" data-sala="${this.sala.id}">`+
-            `<h2 class="title">Você encontra alguns amigos ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
-            '<div class="containers">'+
-            `<button class="mess-btn perg_pers perg_pers_1" data-amigo="${amigos[0].id}">Perguntar para <strong>${amigos[0].nome}</strong></button>`+
-            `<button class="mess-btn perg_pers perg_pers_2" data-amigo="${amigos[1].id}">Perguntar para <strong>${amigos[1].nome}</strong></button>`+
-            `<button class="mess-btn perg_pers perg_pers_3" data-amigo="${amigos[2].id}">Perguntar para <strong>${amigos[2].nome}</strong></button>`+
-            `<button class="mess-btn is-warning voltar" data-valor="${this.sala.id}">Voltar</button>`+
-            '</div>'+
-            '</section>'
+
+    let $html = `
+            ${barra_de_progresso(controle.timer)}
+            <section class="with-title is-dark bg_on" data-sala="${this.sala.id}">
+            <h2 class="title">Você encontra alguns amigos ${this.sala.artigo[1]} ${this.sala.nome}</h2>
+            <div class="containers">
+            <button class="mess-btn perg_pers perg_pers_1" data-amigo="${amigos[0].id}">Perguntar para <strong>${amigos[0].nome}</strong></button>
+            <button class="mess-btn perg_pers perg_pers_2" data-amigo="${amigos[1].id}">Perguntar para <strong>${amigos[1].nome}</strong></button>
+            <button class="mess-btn perg_pers perg_pers_3" data-amigo="${amigos[2].id}">Perguntar para <strong>${amigos[2].nome}</strong></button>
+            <button class="mess-btn is-warning voltar" data-valor="${this.sala.id}">Voltar</button>
+            </div>
+            </section>
+        `
+
+
     $('.content').html($html)
 }
 
 const mostra_a_dica = (i,npc_id) => {
     this.sala = controle.locais_prontos[i]
+    console.log("🚀 ~ file: principal.js:145 ~ controle.descricoes:", controle.descricoes)
+    console.log("🚀 ~ file: principal.js:145 ~ controle.dicaErrada:", controle)
+
     let npc_atual, dica_atual
-    let dicas_erradas = shuffle_arr(dicas2.erro)
+    let dicas_erradas = shuffle_arr(controle.dicaErrada)
     let proxima_sala = controle.locais_prontos[++i]
     // console.log('controle.erro = ',controle.erro)
     switch (controle.erro) {
@@ -141,18 +169,23 @@ const mostra_a_dica = (i,npc_id) => {
     }
     
     // console.log(npc_atual)
-    $html = barra_de_progresso(controle.timer)+
-            `<section class="with-title bg_on" data-sala="${this.sala.id}">`+
-            `<h2 class="title">${npc_atual.nome}</h2>`+
-            '<div class="containers">'+
-            `<p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>`+
-            `<div class="foto_char npc-${npc_atual.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
-            '<div class="containers">'+
-            '<button class="mess-btn perguntar_alguem">Perguntar para mais alguém</button>'+
-            `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>`+
-            '</div>'+
-            '</div>'+
-            '</section>'
+
+    $html = `
+        ${barra_de_progresso(controle.timer)}
+        <section class="with-title bg_on" data-sala="${this.sala.id}">
+        <h2 class="title">${npc_atual.nome}</h2>
+        <div class="containers">
+        <p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>
+        <div class="frame">
+            <div class="foto_char npc-${npc_atual.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>
+        </div>
+        <div class="containers">
+        <button class="mess-btn perguntar_alguem">Perguntar para mais alguém</button>
+        <button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>
+        </div>
+        </div>
+        </section>
+    `
     $('.content').html($html)
 }
 
@@ -244,31 +277,36 @@ const esta_sala_aqui = (i) => {
     this.sala = controle.locais_prontos[i]
     // console.log(this.sala)
     let $html = barra_de_progresso(controle.timer)+
-        `<section class="with-title bg_on" data-sala="${this.sala.id}">`+
-        `<h2 class="title">Você está ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
-        `<div class="foto_local local-${this.sala.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>`+
-        `<p>${this.sala.descricao}</p>`+
-        '<div class="containers">'+
-        '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
-        `<button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro lugar</button>`+
-        '</div>'+
-        '</section>'
+        `<section class="with-title bg_on" data-sala="${this.sala.id}">
+            <h2 class="title">Você está ${this.sala.artigo[1]} ${this.sala.nome}</h2>
+            <div class="frame">
+                <div class="foto_local local-${this.sala.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>
+            </div>
+            <p>${this.sala.descricao}</p>
+            <div class="containers">
+            <button class="mess-btn perguntar_alguem">Perguntar para alguém</button>
+            <button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro lugar</button>
+            </div>
+        </section>`
+        
     $('.content').html($html)
 }
 
 const barra_de_progresso = (timer) => {
-    let valor_tempo,classe,mod    
-    controle.dificuldade.nivel == 'facil' ? mod = 5 : controle.dificuldade.nivel == 'medio' ? mod = 7 : mod = 10
-    valor_tempo = timer * mod
-    valor_tempo > 80 ? classe = 'is-error' : valor_tempo > 50 ? classe = 'is-warning' : classe = 'is-success'  
+    let valor_tempo,classe,mod;
+    controle.dificuldade.nivel == 'facil' ? mod = 5 : controle.dificuldade.nivel == 'medio' ? mod = 7 : mod = 10;
+    valor_tempo = timer * mod;
+    valor_tempo > 80 ? classe = 'is-error' : valor_tempo > 50 ? classe = 'is-warning' : classe = 'is-success';
     
-    let str = '<header class="mess-container with-title">'+
-    '<h3 class="title">Tempo</h3>'+
-    '<span class="progress">'+
-    `<span class="progress_bar ${classe}" style="width: ${valor_tempo}%"></span>`+
-    '</span>'+
-    // `<progress class="mess-progress ${classe} timer" value="${valor_tempo}" max="100"></progress>`+
-    '</header>'
+
+    let str = `
+        <header class="mess-container with-title">
+            <h3 class="title">Tempo</h3>
+            <span class="progress">
+                <span class="progress_bar ${classe}" style="width: ${valor_tempo}%"></span>
+            </span>
+        </header>
+    `;
 
     if (valor_tempo >= 100) {
         controle.perda = 1 
@@ -279,20 +317,22 @@ const barra_de_progresso = (timer) => {
 }
 
 const fim_do_jogo_perda = _ => {
-    // content.innerHTML = '<section class="mess-container is-dark with-title">'+
-    let $html = '<section class="is-dark with-title">'+
-        '<h2 class="title">Oh não!</h2>'+
-        '<div class="containers">'+
-        `<p>${desc.fail}</p>`+
-        '</div>'+
-        '</section>'
+    let $html = `<section class="is-dark with-title">
+        <h2 class="title">Oh não!</h2>
+        <div class="containers">
+        <p>${controle.descricoes.fail}</p>
+        </div>
+        </section>`;
 
     $('.content').html($html)
 }
 
 //Adiciona ocupantes
 const prepara_jogo = () => {
+    let estes_locais = controle.descricoes;
     // let mix_locais = shuffle_arr(estes_locais)
+    console.log("🚀 ~ file: principal.js:327 ~ estes_locais:", estes_locais)
+    
     let mix_locais = estes_locais
     for (i in mix_locais) {
         //  mix_locais[i].dicas = shuffle_arr(mix_locais[i].dicas)
@@ -332,6 +372,6 @@ const shuffle_arr = (a) => {
 }
 
 const inicio_do_jogo = () => {
-    let $html = `<section><p>${desc.inicio}</p><div class="containers"></div><button class="mess-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
+    let $html = `<section><p>${controle.descricoes.inicio}</p><div class="containers"></div><button class="mess-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
     $('.content').html($html)
 }
