@@ -190,41 +190,43 @@ button.voltar {
 
 .foto_char {
     float: none;
-    position: relative;
-    width: 40vw;
-    height: 40vw;
-    max-width: 200px;
-    max-height: 200px;
-    background: red;
+    position: absolute;
+    width: 200px;
+    height: 230px;
+    /* max-width: 200px;
+    max-height: 200px; */
+    /* background: red; */
     display: block;
-    margin: 0 auto 10px;
-    background-image: url('../src/img/Hero_01_Faceset.png');
-    background-size: 420%;
-    background-position: 67% 33%;
+    /* background-image: url('../src/img/Hero_01_Faceset.png'); */
+    /* background-size: 420%; */
+    /* background-position: 67% 33%; */
+    background-position: center;
+    background-size: cover;
+    bottom: 0;
+    left: 50%;
+    margin-left: -100px;
 }
 
 .foto_local {
     float: none;
     position: relative;
-    width: 60vw;
-    height: 60vw;
-    max-width: 322px;
+    height: 57vw;
     max-height: 322px;
     background: var(--sec-bg-color);
     display: block;
     margin: 10px auto;
     background-image: url('../src/img/sala.png');
-    background-size: 100%;
+    background-size: cover;
     background-position: bottom center;
 }
 
-.local-prefeitura {
+/* .local-prefeitura {
     background-image: url('../src/img/bg_prefeitura.png');
     width: 100%;
     background-color: red;
     max-width: 100%;
     height: 57vw;
-}
+} */
 
 .progress {
     float: left;

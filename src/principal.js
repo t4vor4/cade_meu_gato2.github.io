@@ -29,6 +29,7 @@ $(document).ready(function () {
         .then(data => {
             controle.descricoes = data.descricoes;
             controle.dicaErrada = data.dicaErrada;
+            controle.inicio = data.inicio;
         })
         .then( () => playGame())
         .catch(error => console.error(error));
@@ -137,7 +138,8 @@ const lista_pessoas_no_local = (i) => {
         `
 
 
-    $('.content').html($html)
+    // $('.content').html($html)
+    document.querySelector('.content').innerHTML = $html;
 }
 
 const mostra_a_dica = (i,npc_id) => {
@@ -176,8 +178,8 @@ const mostra_a_dica = (i,npc_id) => {
         <h2 class="title">${npc_atual.nome}</h2>
         <div class="containers">
         <p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>
-        <div class="frame">
-            <div class="foto_char npc-${npc_atual.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>
+        <div class="foto_local local-${this.sala.id}" style="background-image: url(./src/img/bg_${this.sala.id}.png)" title="Imagem representa uma pessoa, sem contornos definidos">
+            <div class="foto_char npc-${npc_atual.id}" style="background-image: url(../src/img/char_${npc_atual.id}.png)" title="Imagem representa uma pessoa, sem contornos definidos"></div>
         </div>
         <div class="containers">
         <button class="mess-btn perguntar_alguem">Perguntar para mais alguém</button>
@@ -186,7 +188,8 @@ const mostra_a_dica = (i,npc_id) => {
         </div>
         </section>
     `
-    $('.content').html($html)
+    // $('.content').html($html)
+    document.querySelector('.content').innerHTML = $html;
 }
 
 const proximo_local = (local) => local == controle.locais_prontos[controle.pivot].id ? caminho_correto() : caminho_errado(local)
@@ -217,7 +220,8 @@ const na_pista_certa = _ => {
         `<p>Parece que o bichano esteve neste cômodo, esta cheio de pêlos!</p>`+
         '</div>'+
         '</section>'
-    $('.content').html($html)
+    // $('.content').html($html)
+    document.querySelector('.content').innerHTML = $html;
     setTimeout(function(){esta_sala_aqui(controle.ponto)},3000)
 }
 
@@ -269,7 +273,8 @@ function mostraOpcoesDeLocais (i,sala_atual) {
         `<button class="mess-btn is-warning voltar" data-valor=${sala_atual}>Voltar</button>`+
         '</div>'+
         '</section>'
-    $('.content').html(conteudo)
+    // $('.content').html(conteudo)
+    document.querySelector('.content').innerHTML = conteudo;
 }
 
 // prepara a sala do atual
@@ -279,9 +284,7 @@ const esta_sala_aqui = (i) => {
     let $html = barra_de_progresso(controle.timer)+
         `<section class="with-title bg_on" data-sala="${this.sala.id}">
             <h2 class="title">Você está ${this.sala.artigo[1]} ${this.sala.nome}</h2>
-            <div class="frame">
-                <div class="foto_local local-${this.sala.id}" title="Imagem representa uma pessoa, sem contornos definidos"></div>
-            </div>
+            <div class="foto_local local-${this.sala.id}" style="background-image: url(./src/img/bg_${this.sala.id}.png)" title="Imagem representa uma pessoa, sem contornos definidos"></div>
             <p>${this.sala.descricao}</p>
             <div class="containers">
             <button class="mess-btn perguntar_alguem">Perguntar para alguém</button>
@@ -289,7 +292,9 @@ const esta_sala_aqui = (i) => {
             </div>
         </section>`
         
-    $('.content').html($html)
+    // $('.content').html($html)
+    document.querySelector('.content').innerHTML = $html;
+
 }
 
 const barra_de_progresso = (timer) => {
@@ -372,6 +377,6 @@ const shuffle_arr = (a) => {
 }
 
 const inicio_do_jogo = () => {
-    let $html = `<section><p>${controle.descricoes.inicio}</p><div class="containers"></div><button class="mess-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
-    $('.content').html($html)
+    let $html = `<section><p>${controle.inicio}</p><div class="containers"></div><button class="mess-btn inicio">CARA, CADÊ MEU GATO??</button></div></section>`
+    document.querySelector('.content').innerHTML = $html;
 }
