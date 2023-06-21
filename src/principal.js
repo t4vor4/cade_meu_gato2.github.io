@@ -1,8 +1,10 @@
 /*
 * TO-DO
 * modo visual-novel
+* 
+* Mudar a tela de quando acha a pista do gato;
+* Manter a imagem do local em todas as telas (escolha de conversas, dicas de busca, menus, etc);
 */
-
 
 
 let controle = {
@@ -18,11 +20,6 @@ let controle = {
 
 let content;
 
-
-
-
-
-
 $(document).ready(function () {
     fetch('./src/json/general.json')
         .then(response => response.json())
@@ -30,6 +27,8 @@ $(document).ready(function () {
             controle.descricoes = data.descricoes;
             controle.dicaErrada = data.dicaErrada;
             controle.inicio = data.inicio;
+            controle.fim = data.fim;
+            controle.fail = data.fail;
         })
         .then( () => playGame())
         .catch(error => console.error(error));
@@ -111,7 +110,7 @@ const fim_do_jogo = (i) => {
     let $html = barra_de_progresso(controle.timer)+
         '<section class="with-title">'+
         `<h2 class="title">Você encontrou seu gato ${this.sala.artigo[1]} ${this.sala.nome}</h2>`+
-        `<p>${controle.descricoes.fim}</p>`+
+        `${controle.fim}`+
         '<div class="containers">'+
         // '<button class="mess-btn perguntar_alguem">Perguntar para alguém</button>'+
         // '<button class="mess-btn locais_casa">Procurar em algum cômodo</button>'+
@@ -144,13 +143,11 @@ const lista_pessoas_no_local = (i) => {
 
 const mostra_a_dica = (i,npc_id) => {
     this.sala = controle.locais_prontos[i]
-    console.log("🚀 ~ file: principal.js:145 ~ controle.descricoes:", controle.descricoes)
-    console.log("🚀 ~ file: principal.js:145 ~ controle.dicaErrada:", controle)
 
     let npc_atual, dica_atual
     let dicas_erradas = shuffle_arr(controle.dicaErrada)
     let proxima_sala = controle.locais_prontos[++i]
-    // console.log('controle.erro = ',controle.erro)
+
     switch (controle.erro) {
         case 1:
         for(let y in sala.ocupantes) {
@@ -169,21 +166,19 @@ const mostra_a_dica = (i,npc_id) => {
         }
             break;
     }
-    
-    // console.log(npc_atual)
 
     $html = `
         ${barra_de_progresso(controle.timer)}
         <section class="with-title bg_on" data-sala="${this.sala.id}">
         <h2 class="title">${npc_atual.nome}</h2>
         <div class="containers">
-        <p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>
         <div class="foto_local local-${this.sala.id}" style="background-image: url(./src/img/bg_${this.sala.id}.png)" title="Imagem representa uma pessoa, sem contornos definidos">
             <div class="foto_char npc-${npc_atual.id}" style="background-image: url(../src/img/char_${npc_atual.id}.png)" title="Imagem representa uma pessoa, sem contornos definidos"></div>
+            <p class="mess-balloon from-left">${npc_atual.frase+dica_atual}</p>
         </div>
         <div class="containers">
         <button class="mess-btn perguntar_alguem">Perguntar para mais alguém</button>
-        <button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro cômodo</button>
+        <button class="mess-btn locais_casa" data-sala="${this.sala.id}">Procurar em outro local</button>
         </div>
         </div>
         </section>
@@ -335,6 +330,7 @@ const fim_do_jogo_perda = _ => {
 //Adiciona ocupantes
 const prepara_jogo = () => {
     let estes_locais = controle.descricoes;
+    console.log("🚀 ~ file: principal.js:328 ~ controle:", controle.fim)
     // let mix_locais = shuffle_arr(estes_locais)
     console.log("🚀 ~ file: principal.js:327 ~ estes_locais:", estes_locais)
     

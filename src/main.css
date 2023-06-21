@@ -78,26 +78,16 @@
 } */
 
 .mess-balloon {
-    background: var(--main-bg-color);
     padding: 10px;
-    border: 4px solid #333;
+    border: 4px solid;
+    border-color: var(--main-color);
     border-radius: 6px;
-    position: relative;
-}
-
-.mess-balloon::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: 20px solid var(--main-color);
-    border-left: 20px solid transparent;
     position: absolute;
-    float: left;
-    left: 40px;
-    bottom: -20px;
+    background-color: rgba(255, 255, 255, .75);
+    width: calc(100% - 20px);
+    margin: 0 0 10px 10px;
+    bottom: 0;
 }
-
-
 
 /* Fim Mess */
 body {
@@ -191,8 +181,8 @@ button.voltar {
 .foto_char {
     float: none;
     position: absolute;
-    width: 200px;
-    height: 230px;
+    width: 50%;
+    height: 100%;
     /* max-width: 200px;
     max-height: 200px; */
     /* background: red; */

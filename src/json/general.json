@@ -206,7 +206,7 @@
         "gato eu não vi, mas tinha um ornitorrinco em algum lugar.",
         "aqui eu só vi um casal de estorninhos e um jaboti. Talvez em outro local?"
     ],
-    "inicio": "Texto de inicio:",
-    "fim": "Você encontra o gato.<br/><strong>Fim :)</strong>",
+    "inicio": "<p>Num dia ensolarado, na calma de sua casa, você desfrutava da companhia de seu amado gato. Porém, um som misterioso vindo de fora agitou o felino, que escapou por entre suas mãos e desapareceu pela porta, adentrando a cidade movimentada.</p><p>Com o coração apertado pela partida repentina do gato, você sentiu uma determinação incandescente tomar conta de si. Determinado a encontrar seu amigo felino e trazê-lo de volta ao lar, você iniciou assim uma busca repleta de desafios pelas ruas da cidade.</p>",
+    "fim": "<p>Após uma busca incansável, percorrendo ruas e becos da cidade, o rapaz finalmente encontrou seu amado gato. No momento do reencontro, uma explosão de alegria preencheu o ar, enquanto o felino correu em direção aos braços acolhedores de seu dono. As lágrimas de alívio e felicidade se misturaram em seus olhos, e eles sabiam que nunca mais se separariam.</p><p>A partir daquele momento, o rapaz e seu gato decidiram aproveitar cada segundo juntos. Eles compartilharam momentos de brincadeiras animadas, abraços calorosos e longas sonecas preguiçosas. A conexão entre eles se fortaleceu ainda mais, e eles sabiam que nada poderia quebrar esse vínculo especial.</p><p>Assim, o rapaz e seu gato embarcaram em uma nova fase de suas vidas, explorando juntos os dias e noites cheios de aventuras. Unidos por um laço indissolúvel, eles descobriram a verdadeira alegria de ter um ao outro como companheiros, prontos para enfrentar o futuro com coragem e amor incondicional.</p>",
     "fail": "Você não encontra o gato"
 }
